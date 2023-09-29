@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, Button, TextInput, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
+
 
 const TurnAndBack = () => {
   const [selectedFromLocation, setSelectedFromLocation] = useState("");
@@ -10,13 +11,19 @@ const TurnAndBack = () => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation();
 
+  
+
   const handleSearch = () => {
     navigation.navigate("SelectSeat", {
       fromLocation: selectedFromLocation, 
       toLocation: selectedToLocation, 
       travelDate: travelDate,
     });
+    
   };
+
+
+
 
   const showDatepicker = () => {
     setShowDatePicker(true);
@@ -34,6 +41,7 @@ const TurnAndBack = () => {
 
   return (
     <View style={styles.container}>
+     
       <Text style={styles.label}>NEREDEN:</Text>
       <TextInput
         style={styles.input}

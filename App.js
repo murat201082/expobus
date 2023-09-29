@@ -2,6 +2,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import AuthContextProvider from "./context/AuthContex";
 
 import Main from "./src/Main";
 import Login from "./src/Login";
@@ -33,7 +34,7 @@ function Root() {
 function App() {
   return (
     <NavigationContainer>
-     
+      <AuthContextProvider>
         <Stack.Navigator>
           <Stack.Screen name="Root" component={Root} />
 
@@ -41,7 +42,7 @@ function App() {
           <Stack.Screen name="TurnAndBack" component={TurnAndBack} />
           <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
         </Stack.Navigator>
-    
+      </AuthContextProvider>
     </NavigationContainer>
   );
 }

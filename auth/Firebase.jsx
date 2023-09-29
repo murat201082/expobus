@@ -43,7 +43,8 @@ export const createUser = async (email, password, navigation, displayName) => {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
+      displayName
     );
     await updateProfile(auth.currentUser, {
       displayName: displayName,
@@ -88,6 +89,7 @@ export const userObserver = (setCurrentUser) => {
     if (currentUser) {
       setCurrentUser(currentUser);
     } else {
+    
       setCurrentUser(false);
     }
   });

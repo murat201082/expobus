@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -7,19 +7,25 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import ToastContainer, { Toast } from "toastify-react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { signIn } from "../auth/Firebase";
+import { AuthContext } from "../context/AuthContex";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
+  const { currentUser } = useContext(AuthContext);
 
   const handleSubmit = () => {
+    Toast.success(`Hoşgeldiniz Sayın : ${currentUser.displayName}`);
     signIn(email, password, navigation);
     setEmail("");
     setPassword("");
+    
   };
 
   const handleReset = () => {
@@ -29,6 +35,11 @@ const Login = () => {
 
   return (
     <View style={styles.viewStyle}>
+      <ToastContainer
+          position="top"
+          autoClose={5000}
+          style={{ backgroundColor: "orange" }}
+        />
       <Image source={require("../img/bus_pic.jpg")} style={styles.imagePic} />
 
       <TextInput
